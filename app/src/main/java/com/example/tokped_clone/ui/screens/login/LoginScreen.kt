@@ -30,9 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.example.tokped_clone.ui.theme.Tokped_cloneTheme
 
 @Composable
 fun LoginScreen(
@@ -50,7 +53,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Placeholder Ilustrasi Gambar (Silakan ganti dengan Image() nanti)
+        // Ilustrasi Gambar
         Box(
             modifier = Modifier
                 .size(120.dp)
@@ -131,10 +134,12 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         when (loginState) {
+            // Ke halaman Utama
             is LoginState.Success -> Text(
-                "Login Berhasil",
-                color = Color(0xFF00AA5B)
-            ) // Tokopedia green
+                "Login Berhasil! Selamat datang",
+                color = Color.Green
+            )
+
             is LoginState.Error -> Text(
                 "Gagal: ${(loginState as LoginState.Error).message}",
                 color = MaterialTheme.colorScheme.error
@@ -142,5 +147,13 @@ fun LoginScreen(
 
             else -> {}
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun LoginScreenPrev() {
+    Tokped_cloneTheme {
+        LoginScreen()
     }
 }
